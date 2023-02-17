@@ -119,6 +119,7 @@ export type DeprecatedGlobalStorage = {
 
 export type GlobalStorage = {
 	avatars: [string, StoredAvatar][];
+	repoVisibility: [string, StoredRepoVisibilityInfo][];
 	'deepLinks:pending': StoredDeepLinkContext;
 	'home:actions:completed': CompletedActions[];
 	'home:steps:completed': string[];
@@ -177,6 +178,14 @@ export interface Stored<T, SchemaVersion extends number = 1> {
 export interface StoredAvatar {
 	uri: string;
 	timestamp: number;
+}
+
+export type StoredRepositoryVisibility = 'private' | 'public' | 'local';
+
+export interface StoredRepoVisibilityInfo {
+	visibility: StoredRepositoryVisibility;
+	timestamp: number;
+	remotesHash?: string;
 }
 
 export interface StoredBranchComparison {
